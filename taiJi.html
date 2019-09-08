@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ch-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>太极</title>
+    <style>
+        body {
+            background-color: #eee;
+        }
+
+        .taiji{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin:30px auto;
+            background: linear-gradient(to bottom,#fff 0%,#fff 50%,#000 50%,#000 100%);
+            border-radius: 50%;
+            animation-name: spin;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        .taiji::before,.taiji::after{
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-width: 40px;
+            border-style: solid;
+            border-radius: 50%;
+
+        }
+        .taiji::before{
+            left: 0;
+            top: 50px;
+            border-color: #fff;
+            background-color: #000;
+        }
+        .taiji::after{
+            right: 0;
+            bottom: 50px;
+            border-color: #000;
+            background-color: #fff;
+        }
+        @keyframes spin {
+            from{
+                transform: rotate(0deg);    
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="taiji">
+
+    </div>
+</body>
+
+</html>

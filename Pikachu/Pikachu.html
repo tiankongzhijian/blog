@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pikachu</title>
+    <style id='stylePika'>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 100px;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1f1f1f;
+        }
+
+        .container {
+            position: relative;
+            width: 3.2rem;
+            height: 4.6rem;
+        }
+
+        .container .left-ear {
+            position: absolute;
+            top: 0px;
+            width: 36px;
+            height: 160px;
+            left: 48px;
+            background-color: #0A0A0A;
+            border-bottom-left-radius: 80px 70%;
+            border-top-left-radius: 100%;
+            border-top-right-radius: 100%;
+            -webkit-transform: rotateZ(25deg);
+            transform: rotateZ(25deg);
+            border-left: 1px solid #0A0A0A;
+            border-right: 1px solid #0A0A0A;
+            border-top: 1px solid #0A0A0A;
+            overflow: hidden;
+            animation: ear_right 3s infinite linear 0s;
+        }
+
+        .container .left-ear::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            background-color: #fed823;
+            width: 46px;
+            height: 130px;
+            border-radius: 0 80% 0 0;
+            border-top: 1px solid #0A0A0A;
+        }
+
+        .container .right-ear {
+            position: absolute;
+            top: 69px;
+            right: 80px;
+            width: 30px;
+            height: 140px;
+            background-color: #231815;
+            border-bottom-left-radius: 80px 150%;
+            border-top-left-radius: 190%;
+            border-top-right-radius: 150%;
+            -webkit-transform: rotateZ(80deg);
+            transform: rotateZ(80deg);
+            border: 1px solid #0A0A0A;
+            border-bottom: none;
+            z-index: 500;
+            overflow: hidden;
+        }
+
+        .container .right-ear::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            background-color: #fed823;
+            width: 40px;
+            height: 110px;
+            border-radius: 0 80% 0 0;
+            border-top: 1px solid #0A0A0A;
+        }
+
+        .container .pik-body {
+            position: absolute;
+            bottom: 0;
+            width: 185px;
+            height: 340px;
+            border-top-left-radius: 130px 120px;
+            border-top-right-radius: 150px 100px;
+            border-bottom-left-radius: 100px 130px;
+            border-bottom-right-radius: 150px 100px;
+            border: 1px solid rgba(0, 0, 0, 0);
+            -webkit-transform: rotateZ(-1deg);
+            transform: rotateZ(-1deg);
+            z-index: 300;
+        }
+
+        .container .pik-body .pik-head {
+            position: absolute;
+            right: 7px;
+            width: 160px;
+            height: 160px;
+            background-color: #fed823;
+            border-top-left-radius: 130px 120px;
+            border-top-right-radius: 150px 100px;
+            border-bottom-left-radius: 80px 80px;
+            border-bottom-right-radius: 25px 120px;
+            border: 1px solid #0A0A0A;
+            border-bottom: none;
+        }
+
+        .container .pik-body .pik-head::before {
+            content: '';
+            position: absolute;
+            left: 0px;
+            top: 76px;
+            z-index: 1;
+            width: 30px;
+            height: 90px;
+            background-color: #fed823;
+            -webkit-transform: rotateZ(-28deg);
+            transform: rotateZ(-28deg);
+            border-top-left-radius: 150% 90px;
+            border-bottom-left-radius: 150% 90px
+        }
+
+        .container .pik-body .pik-head::after {
+            content: '';
+            position: absolute;
+            left: -14px;
+            top: 81px;
+            width: 30px;
+            height: 76px;
+            background-color: #fed823;
+            border: 1px solid #0A0A0A;
+            -webkit-transform: rotateZ(-28deg);
+            transform: rotateZ(-28deg);
+            border-top-left-radius: 150% 90px;
+            border-bottom-left-radius: 150% 90px
+        }
+
+        .container .pik-body .pik-head .eye-left {
+            position: absolute;
+            top: 45px;
+            left: 10px;
+            width: 20px;
+            height: 32px;
+            background-color: #000;
+            border: 1px solid #2e2e2e;
+            border-radius: 50%;
+            -webkit-transform: rotateZ(10deg);
+            transform: rotateZ(10deg);
+        }
+
+        .container .pik-body .pik-head .eye-left::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 5px;
+            width: 10px;
+            height: 16px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: eye s infinite step-start 2s;
+        }
+
+        .container .pik-body .pik-head .eye-right {
+            position: absolute;
+            top: 52px;
+            right: 36px;
+            width: 30px;
+            height: 33px;
+            background-color: #000;
+            border: 1px solid #2e2e2e;
+            border-radius: 50%;
+        }
+
+        .container .pik-body .pik-head .eye-right::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 6px;
+            width: 15px;
+            height: 15px;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+
+        .container .pik-body .pik-head .cheek-left {
+            position: absolute;
+            left: -20px;
+            top: 80px;
+            z-index: 2;
+            width: 23px;
+            height: 40px;
+            background-color: #F00;
+            border: 1px solid #000;
+            border-radius: 50%;
+        }
+
+        .container .pik-body .pik-head .cheek-right {
+            position: absolute;
+            top: 90px;
+            right: 18px;
+            width: 40px;
+            height: 40px;
+            background-color: #F00;
+            border: 1px solid #0A0A0A;
+            border-radius: 50%;
+        }
+
+        .container .pik-body .pik-head .nose {
+            position: absolute;
+            top: 75px;
+            left: 40px;
+            width: 0;
+            height: 0;
+            border-top: 9px solid #000;
+            border-left: 11px solid transparent;
+            border-right: 11px solid transparent;
+        }
+
+        .container .pik-body .pik-head .nose .top {
+            position: absolute;
+            top: -13px;
+            left: -10px;
+            width: 20px;
+            height: 5px;
+            background-color: #000;
+            border-top-left-radius: 11px 5px;
+            border-top-right-radius: 11px 5px;
+        }
+
+        .container .pik-body .pik-head .nose:before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -12px;
+            width: 13px;
+            height: 2px;
+            background-color: #000;
+            border-top-left-radius: 11px 5px;
+            border-top-right-radius: 11px 5px;
+            transform: rotate(-140deg);
+        }
+
+        .container .pik-body .pik-head .nose::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -1px;
+            width: 13px;
+            height: 2px;
+            background-color: #000;
+            border-top-left-radius: 11px 5px;
+            border-top-right-radius: 11px 5px;
+            transform: rotate(140deg);
+        }
+
+        .container .pik-body .pik-head .mouth {
+            position: relative;
+            transform: rotate(5deg);
+        }
+
+        .container .pik-body .pik-head .mouth:before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 105px;
+            width: 40px;
+            height: 12px;
+            background-color: #fed823;
+            border: 2px solid #000;
+            border-top: none;
+            border-right: none;
+            -webkit-transform: rotate(-25deg);
+            transform: rotate(-25deg);
+            border-bottom-left-radius: 30px 15px;
+            z-index: 1;
+
+        }
+
+        .container .pik-body .pik-head .mouth::after {
+            content: '';
+            position: absolute;
+            right: 65px;
+            top: 105px;
+            width: 40px;
+            height: 12px;
+            background-color: #fed823;
+            border: 2px solid #000;
+            border-top: none;
+            border-left: none;
+            -webkit-transform: rotate(25deg);
+            transform: rotate(25deg);
+            border-bottom-right-radius: 30px 15px;
+        }
+
+        .shock-left {
+            position: absolute;
+            left: -130px;
+            top: 80px;
+            width: 140px;
+            -webkit-transform: rotateZ(140deg);
+            transform: rotateZ(140deg);
+            z-index: 10;
+        }
+
+        .shock-right {
+            position: absolute;
+            right: -110px;
+            top: 100px;
+            width: 140px;
+            -webkit-transform: rotateZ(-14deg);
+            transform: rotateZ(-14deg);
+            z-index: 10;
+        }
+
+        .container .pik-body .mid {
+            position: absolute;
+            top: 165px;
+            left: 30px;
+            width: 160px;
+            height: 150px;
+            background-color: #fed823;
+            border-top-right-radius: 70px 140px;
+            border-bottom-right-radius: 50px;
+            border-bottom-left-radius: 30px;
+            border-bottom: 1px solid #0A0A0A;
+            border-right: 1px solid #0A0A0A;
+            z-index: 1;
+        }
+
+        .container .pik-body .mid:before {
+            content: '';
+            position: absolute;
+            right: 17px;
+            width: 150px;
+            height: 40px;
+            border-right: 1px solid #000;
+            background: #fed823;
+            -webkit-transform: rotateZ(-8deg);
+            transform: rotateZ(-8deg);
+        }
+
+        .container .pik-body .mid:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: -20px;
+            width: 70px;
+            height: 100px;
+            border-radius: 90% 30% 0 80%;
+            background-color: #fed823;
+            border-bottom: 1px solid #0A0A0A;
+            border-left: 1px solid #0A0A0A;
+        }
+
+        .container .pik-body .mid .right-hand {
+            position: absolute;
+            right: 45px;
+            top: -5px;
+        }
+
+        .container .pik-body .mid .right-hand::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 5px;
+            background-color: #fed823;
+        }
+
+        .container .pik-body .mid .right-hand::after {
+            content: '';
+            position: relative;
+            display: block;
+            width: 85px;
+            height: 65px;
+            border-top-left-radius: 150px 150%;
+            border-bottom-left-radius: 50px 70%;
+            border-bottom-right-radius: 50px 70%;
+            border-left: 1px solid #0A0A0A;
+            border-bottom: 1px solid #0A0A0A;
+            z-index: 25;
+            background-color: #fed823;
+        }
+
+        .container .pik-body .mid .left-hand {
+            position: absolute;
+            left: -20px;
+            top: -10px;
+            width: 65px;
+            height: 65px;
+            border-radius: 70% 50% 80% 60%;
+            border-left: 1px solid #0A0A0A;
+            border-bottom: 1px solid #0A0A0A;
+            background-color: #fed823;
+            z-index: 5;
+        }
+
+        .container .pik-body .mid .mark1 {
+            position: absolute;
+            width: 18px;
+            height: 12px;
+            border-top-left-radius: 50px 100%;
+            border-bottom-left-radius: 50px 100%;
+            background-color: #c76e29;
+            border: 1px solid #0A0A0A;
+            border-right: none;
+            -webkit-transform: rotateZ(-15deg);
+            transform: rotateZ(-15deg);
+            right: 13px;
+            top: 27px;
+            z-index: 20;
+        }
+
+        .container .pik-body .mid .mark2 {
+            position: absolute;
+            width: 28px;
+            height: 16px;
+            border-top-left-radius: 100px 190%;
+            border-bottom-left-radius: 50px 130%;
+            background-color: #c76e29;
+            border: 1px solid #0A0A0A;
+            border-right: none;
+            -webkit-transform: rotateZ(-10deg);
+            transform: rotateZ(-10deg);
+            right: 0px;
+            top: 82px;
+            z-index: 20;
+        }
+
+        .container .pik-body .mid .left-hand:before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 40px;
+            height: 10px;
+            border-radius: 40%;
+            border-top: 1px solid #0A0A0A;
+            -webkit-transform: rotateZ(17deg);
+            transform: rotateZ(17deg);
+            top: 16px;
+            left: 17px;
+        }
+
+        .container .pik-body .left-foot {
+            position: absolute;
+            bottom: 0;
+            width: 70px;
+            height: 30px;
+            background: #fed823;
+            border-radius: 75%;
+            -webkit-transform: rotateZ(-18deg);
+            transform: rotateZ(-18deg);
+            border: 1px solid #0A0A0A;
+        }
+
+        .container .pik-body .right-foot {
+            position: absolute;
+            bottom: 0;
+            width: 70px;
+            height: 27px;
+            right: -12px;
+            background: #fed823;
+            border-radius: 85%;
+            -webkit-transform: rotateZ(17deg);
+            transform: rotateZ(17deg);
+            border: 1px solid #0A0A0A;
+        }
+
+        .container .pik-body .left-foot:after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0px;
+            width: 28px;
+            height: 10px;
+            background-color: #fed823;
+            border: 1px solid #000;
+            border-radius: 42%;
+            -webkit-transform: rotateZ(-15deg);
+            transform: rotateZ(-15deg);
+        }
+
+        .container .pik-body .left-foot::before {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            bottom: 8px;
+            right: 31px;
+            width: 20px;
+            height: 10px;
+            background-color: #fed823;
+            -webkit-transform: rotateZ(-140deg);
+            transform: rotateZ(-140deg);
+
+        }
+
+        .container .pik-body .right-foot:before {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            right: -2px;
+            width: 25px;
+            height: 10px;
+            background-color: #fed823;
+            border: 1px solid #000;
+            border-radius: 42%;
+            -webkit-transform: rotateZ(15deg);
+            transform: rotateZ(15deg);
+        }
+
+        .container .pik-body .right-foot::after {
+            content: '';
+            position: absolute;
+            bottom: 7px;
+            right: 13px;
+            width: 26px;
+            height: 10px;
+            background-color: #fed823;
+            -webkit-transform: rotateZ(140deg);
+            transform: rotateZ(140deg);
+        }
+
+        .container .tail {
+            position: absolute;
+            width: 150px;
+            height: 250px;
+            right: 0;
+            top: 140px;
+            -webkit-transform-origin: 0 bottom;
+            transform-origin: 0 bottom;
+            -webkit-animation: tailmove 3s ease infinite;
+            animation: tailmove 3s ease infinite;
+        }
+
+        .container .tail .part1 {
+            position: absolute;
+            bottom: 18px;
+            width: 60px;
+            height: 15px;
+            border-bottom: 2px solid #0A0A0A;
+            border-top: 1px solid #0A0A0A;
+            background: #983c0d;
+            -webkit-transform: rotateZ(-50deg);
+            transform: rotateZ(-50deg);
+        }
+
+        .container .tail .part2 {
+            position: absolute;
+            bottom: 49px;
+            width: 50px;
+            height: 18px;
+            left: 9px;
+            border-top: 1px solid #0A0A0A;
+            background: #983c0d;
+            -webkit-transform: rotateZ(40deg);
+            transform: rotateZ(40deg);
+            border-right: 2px solid #0A0A0A;
+        }
+
+        .container .tail .part2:before {
+            position: absolute;
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 9px solid #fed823;
+            border-right: 9px solid rgba(0, 0, 0, 0);
+            border-bottom: 5px solid rgba(0, 0, 0, 0);
+            border-top: 5px solid rgba(0, 0, 0, 0);
+            left: 15px;
+            top: -1px;
+        }
+
+        .container .tail .part2:after {
+            position: absolute;
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 9px solid #fed823;
+            border-right: 9px solid rgba(0, 0, 0, 0);
+            border-bottom: 5px solid rgba(0, 0, 0, 0);
+            border-top: 5px solid rgba(0, 0, 0, 0);
+            left: 14px;
+            top: 8px;
+        }
+
+        .container .tail .part3 {
+            position: absolute;
+            bottom: 78px;
+            width: 70px;
+            height: 25px;
+            border-top: 1px solid #0A0A0A;
+            background: #fed823;
+            -webkit-transform: rotateZ(-45deg);
+            transform: rotateZ(-45deg);
+        }
+
+        .container .tail .part4 {
+            position: absolute;
+            bottom: 105px;
+            width: 80px;
+            height: 35px;
+            border-top: 1px solid #0A0A0A;
+            background: #fed823;
+            -webkit-transform: rotateZ(45deg);
+            transform: rotateZ(45deg);
+            left: -10px;
+        }
+
+        .container .tail .part5 {
+            position: absolute;
+            bottom: 145px;
+            width: 150px;
+            height: 85px;
+            border-top: 1px solid #0A0A0A;
+            border-left: 1px solid #0A0A0A;
+            background: #fed823;
+            -webkit-transform: rotateZ(-7deg);
+            transform: rotateZ(-7deg);
+            left: -16px;
+            border-top-left-radius: 100% 30px;
+            border-bottom-right-radius: 20% 10px;
+            border-right: 1px solid #0A0A0A;
+        }
+
+        @keyframes tailmove {
+            0% {
+                -webkit-transform: rotateZ(0deg);
+                transform: rotateZ(0deg);
+            }
+
+            50% {
+                -webkit-transform: rotateZ(15deg);
+                transform: rotateZ(15deg);
+            }
+
+            100% {
+                -webkit-transform: rotateZ(0deg);
+                transform: rotateZ(0deg);
+            }
+        }
+
+        @keyframes ear_right {
+            0% {
+                -webkit-transform: rotateZ(80deg);
+                transform: rotateZ(25deg) ;
+            }
+
+            50% {
+                -webkit-transform: rotateZ(87deg);
+                transform: rotateZ(28deg);
+            }
+
+            100% {
+                -webkit-transform: rotateZ(80deg);
+                transform: rotateZ(25deg);
+            }
+        }
+        @keyframes eye{
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-ear">
+            <div class="punta"></div>
+        </div>
+        <div class="right-ear">
+            <div class="fillear"></div>
+        </div>
+        <div class="pik-body">
+            <img class="shock-left" src="img/3.gif">
+            <img class="shock-right" src="img/3.gif">
+            <div class="pik-head">
+                <div class="cheek-left"></div>
+                <div class="eye-left"></div>
+                <div class="eye-right"></div>
+                <div class="cheek-right"></div>
+                <div class="nose">
+                    <div class="top"></div>
+                </div>
+                <div class="mouth"></div>
+            </div>
+            <div class="mid">
+                <div class="left-hand"></div>
+                <div class="right-hand"></div>
+                <div class="mark1"></div>
+                <div class="mark2"></div>
+            </div>
+            <div class="left-foot"></div>
+            <div class="right-foot"></div>
+        </div>
+        <div class="tail">
+            <div class="part1"></div>
+            <div class="part2"></div>
+            <div class="part3"></div>
+            <div class="part4"></div>
+            <div class="part5"></div>
+        </div>
+    </div>
+</body>
+
+</html>
